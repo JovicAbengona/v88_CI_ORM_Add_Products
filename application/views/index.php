@@ -33,7 +33,7 @@
             </thead>
             <tbody>
             <?php
-                if($products->get()){
+                if($products->get()->stored->id != NULL){
                     $products->get();
                     foreach($products AS $prodduct){
             ?>
