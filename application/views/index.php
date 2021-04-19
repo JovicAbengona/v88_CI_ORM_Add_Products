@@ -32,35 +32,34 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
-                if($products->get()->stored->id != NULL){
-                    $products->get();
-                    foreach($products AS $prodduct){
-            ?>
-                        <tr>
-                            <td class="name"><?= $prodduct->name ?></td>
-                            <td><?= $prodduct->description ?></td>
-                            <td class="price">Php <?= $prodduct->price ?></td>
-                            <td class="date"><?= DATE("F j Y", STRTOTIME($prodduct->created_at)) ?></td>
-                            <td class="action">
-                                <a href="products/show/<?= $prodduct->id ?>" class="show">Show</a>
-                                <a href="products/edit/<?= $prodduct->id ?>" class="edit">Edit</a>
-                                <a href="products/remove/<?= $prodduct->id ?>" class="remove">Remove</a>
-                            </td>
-                        </tr>
-            <?php
-                    }
-                }
-                else{
-            ?>
+<?php       if($products->get()->stored->id != NULL){
+                $products->get();
+                foreach($products AS $prodduct){ ?>
                     <tr>
-                        <td colspan="4">No Data Found</td>
+                        <td class="name"><?= $prodduct->name ?></td>
+                        <td><?= $prodduct->description ?></td>
+                        <td class="price">Php <?= $prodduct->price ?></td>
+                        <td class="date"><?= DATE("F j Y", STRTOTIME($prodduct->created_at)) ?></td>
+                        <td class="action">
+                            <a href="products/show/<?= $prodduct->id ?>" class="show">Show</a>
+                            <a href="products/edit/<?= $prodduct->id ?>" class="edit">Edit</a>
+                            <a href="products/remove/<?= $prodduct->id ?>" class="remove">Remove</a>
+                        </td>
                     </tr>
-            <?php
-                }
-            ?>
+<?php           }
+            }
+            else{ ?>
+                <tr>
+                    <td colspan="4">No Data Found</td>
+                </tr>
+<?php       } ?>
             </tbody>
         </table>
+<?php
+    $this->session->unset_userdata('name');
+    $this->session->unset_userdata('description');
+    $this->session->unset_userdata('price');
+?>
     </section>
 </body>
 </html>
