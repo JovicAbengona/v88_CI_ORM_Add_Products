@@ -30,6 +30,10 @@ class Products extends CI_Controller{
 				"error_price" => $product->error->price
 			);
 
+			$this->session->set_userdata('name', $this->input->post("name"));
+			$this->session->set_userdata('description', $this->input->post("description"));
+			$this->session->set_userdata('price', $this->input->post("price"));
+
 			$this->session->set_userdata($errors);
 			redirect("/");
 		}
